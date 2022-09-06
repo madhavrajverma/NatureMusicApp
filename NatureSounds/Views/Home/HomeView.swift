@@ -9,8 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeVM:HomeViewModel
-    @EnvironmentObject var musicVm:MusicPlayerViewModel
+    @StateObject var musicVM = MusicPlayerViewModel()
     @State private var isMusicPlayer  = false
+    @State private var category = "Rain"
     var body: some View {
         NavigationView {
             ZStack(alignment:.bottom){
@@ -23,11 +24,23 @@ struct HomeView: View {
                             .padding(.vertical,20)
                             
                             HeroImageView(imageName: "rain", title: "Rain Sound", action: {
+                                
+                                category = "Rain"
+                                if let rainSong = homeVM.rainSong{
+                                    updateDataForMusicplayer(song: rainSong, category: "Rain", songList: homeVM.rainSongs, currentIndex: 0)
+                                }
+                                
                                 isMusicPlayer = true
                             })
                                 .padding(.vertical)
                             
                             RadnomCardView(action:{
+                                category = homeVM.randomCategory?.Category ?? ""
+                                
+                                if let raindomSong = homeVM.randomSong ,
+                                   let category = homeVM.randomCategory{
+                                    updateDataForMusicplayer(song: raindomSong,category: category.Category, songList: homeVM.randomSongsList, currentIndex: homeVM.randomIndex)
+                                }
                                 isMusicPlayer = true
                             })
                             
@@ -50,16 +63,21 @@ struct HomeView: View {
             }.sheet(isPresented: $isMusicPlayer,onDismiss: {
                 homeVM.loadAllCategory()
             }) {
-                if let randomSong = homeVM.randomSong {
-                    MusicPlayer(song:randomSong, image: "Rain")
-                        .environmentObject(musicVm)
+                if homeVM.randomSong != nil {
+                    MusicPlayer(image:category, musicVm:musicVM)
                 }
                
             }
             
             
         }
-        
+     
+    }
+    
+    func updateDataForMusicplayer(song:Song,category:String,songList:[Song],currentIndex:Int) {
+        musicVM.songList = songList
+        musicVM.currentSong = song
+        musicVM.currentIndex = currentIndex
     }
 }
 

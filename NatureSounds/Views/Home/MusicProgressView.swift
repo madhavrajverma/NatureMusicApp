@@ -11,6 +11,7 @@ struct MusicProgressView: View {
     @Binding var musicRunningTime:TimeInterval
     @Binding var songDuration:TimeInterval
     @Binding var progressBarValue:Double
+    
     var body: some View {
         HStack {
             Text(musicRunningTime.minuteString())

@@ -10,6 +10,7 @@ import SwiftUI
 struct CategorySongsView: View {
     let Category: Category
     @Environment(\.presentationMode) var presentaionMode
+    @StateObject var musicVm = MusicPlayerViewModel()
     @State  var isMusicPlayer = false
     @State var song:Song?
     var body: some View {
@@ -80,6 +81,10 @@ struct CategorySongsView: View {
                         SongListView(song:song)
                             .onTapGesture {
                                 self.song = song
+                                musicVm.currentSong  = song
+                                musicVm.currentIndex = Category.songs.firstIndex(where: { s in
+                                    song.name == s.name
+                                }) ?? 0
                                 isMusicPlayer = true
                             }
                         Divider()
@@ -89,10 +94,11 @@ struct CategorySongsView: View {
                 .padding(.bottom,100)
                 
             }
+            .onAppear(perform: {
+                musicVm.updateSongList(songs: Category.songs)
+            })
             .sheet(isPresented: $isMusicPlayer) {
-                if let song = song {
-                    MusicPlayer(song: song, image: Category.Category)
-                }
+                    MusicPlayer(image: Category.Category,musicVm: musicVm)
             }
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)

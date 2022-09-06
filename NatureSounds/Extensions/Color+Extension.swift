@@ -13,5 +13,3 @@ extension Color {
     static let mainTextColor = Color("main-text-color")
     static let textColor = Color("text-color")
 }
-
-

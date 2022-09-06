@@ -9,10 +9,8 @@ import SwiftUI
 
 struct MusicPlayer: View {
     @Environment(\.presentationMode) var presentaionMode
-    let song:Song
     let image:String
-    @StateObject var musicVm = MusicPlayerViewModel()
-//    @StateObject var songDownload = MusicDownlaod()
+     @ObservedObject var musicVm : MusicPlayerViewModel
     
     var body: some View {
         VStack {
@@ -21,6 +19,7 @@ struct MusicPlayer: View {
                     Button(action : {
                         musicVm.stopPlayback()
                         presentaionMode.wrappedValue.dismiss()
+                        musicVm.removeSavedDate()
                     }) {
                         Image(systemName: "multiply.circle")
                             .font(.largeTitle)
@@ -45,7 +44,7 @@ struct MusicPlayer: View {
                     .padding()
                    
                 VStack(spacing:10){
-                    Text(song.name)
+                    Text(musicVm.currentSong?.name ?? "No Name")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Text(image)
@@ -55,7 +54,9 @@ struct MusicPlayer: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action : {}) {
+                    Button(action : {
+                        musicVm.prevSong()
+                    }) {
                         Image(systemName: "backward.end.fill")
                             .font(.title)
                             .foregroundColor(.gray)
@@ -87,7 +88,7 @@ struct MusicPlayer: View {
                     }
                     Spacer()
                     Button(action : {
-                        
+                        musicVm.nextSong()
                     }) {
                         Image(systemName: "forward.end.fill")
                             .font(.title)
@@ -101,21 +102,22 @@ struct MusicPlayer: View {
                     .padding()
             }
             .onAppear {
-                musicVm.playMusicDataFromURL(url: song.url)
+                musicVm.playMusicDataFromURL()
            }
             .onDisappear {
                 musicVm.stopPlayback()
+                musicVm.removeSavedDate()
             }
         }
     }
 }
 
-struct MusicPlayer_Previews: PreviewProvider {
-    static var previews: some View {
- MusicPlayer(song: Song(id: 3, name: "sea-beach", url: ""), image: "sea")
-//     LoadingView()
-    }
-}
+//struct MusicPlayer_Previews: PreviewProvider {
+//    static var previews: some View {
+//// MusicPlayer(song: Song(id: 3, name: "sea-beach", url: ""), image: "sea")
+////     LoadingView()
+//    }
+//}
 
 
 

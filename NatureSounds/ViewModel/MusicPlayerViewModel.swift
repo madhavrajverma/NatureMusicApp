@@ -7,14 +7,13 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 enum AudioStatus {
     case stopped,playing,pause,resume
 }
 
 class MusicPlayerViewModel : NSObject,ObservableObject {
-    
-   
     
     let musicDownloadManager = MusicDownloadManger.instance
     
@@ -31,7 +30,49 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
     
     var audioPlayer: AVAudioPlayer?
     
-    //MARK: - Timer Methods
+    
+    @Published var songList:[Song] = []
+    @Published var currentSong:Song?
+    
+    var currentIndex  = 0
+    
+    
+//MARK: - Timer in Background
+    
+    override init() {
+        
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseWhenBackground(noti:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(noti:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func pauseWhenBackground(noti: Notification) {
+        self.timer.invalidate()
+        let shared = UserDefaults.standard
+        shared.set(Date(), forKey: "savedTime")
+    }
+    
+    @objc func willEnterForeground(noti: Notification) {
+        if let savedDate = UserDefaults.standard.object(forKey: "savedTime") as? Date {
+            let timeInterval = Date() - savedDate
+            self.musicRunningTime += timeInterval
+            start()
+
+        }
+    }
+    
+    func removeSavedDate() {
+           if (UserDefaults.standard.object(forKey: "savedTime") as? Date) != nil {
+               UserDefaults.standard.removeObject(forKey: "savedTime")
+           }
+       }
+    
+     func getTimeDifference(startDate: Date) -> (Int, Int, Int) {
+           let calendar = Calendar.current
+           let components = calendar.dateComponents([.hour, .minute, .second], from: startDate, to: Date())
+           return(components.hour!, components.minute!, components.second!)
+        }
+    
     func start() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             
@@ -44,6 +85,17 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         }
     }
     
+    func reset() {
+        stopPlayback()
+        status = .stopped
+        musicData = Data()
+        musicRunningTime = 0
+        progressBarValue = 0
+        songDuration = 0
+        
+        
+    }
+    
     func pause() {
         timer.invalidate()
     }
@@ -54,11 +106,50 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         progressBarValue = 0
     }
     
-    func playMusicDataFromURL(url :String) {
-       
+    func stopPlayback() {
+        audioPlayer?.stop()
+        status = .stopped
+        stop()
+        
+    }
+    
+//MARK: - Next Song & Previou Song
+    func nextSong() {
+        if currentIndex < songList.count - 1 {
+            currentIndex +=  1
+            currentSong = songList[currentIndex]
+            playMusicDataFromURL()
+        }
+        
+    }
+    
+    func prevSong() {
+        if currentIndex > 0{
+            currentIndex -=  1
+            currentSong = songList[currentIndex]
+            playMusicDataFromURL()
+        }
+        
+    }
+    
+    
+    func updateSongList(songs:[Song]) {
+        self.songList = songs
+        playMusicDataFromURL()
+    }
+    
+    
+//MARK: - Music Methods
+    func playMusicDataFromURL() {
+        
+        reset()
+        
+        guard let songUrl = self.currentSong?.url else {
+            return
+        }
         musicData = Data()
         self.isSongDownloadCompleted = false
-        musicDownloadManager.fetchSongAtUrl(url) { results in
+        musicDownloadManager.fetchSongAtUrl(songUrl) { results in
             switch results {
             case .success(let data) :
                 self.musicData = data
@@ -71,9 +162,6 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         }
     }
     
-    func seekForward() {
-        
-    }
     
     func play(musicData:Data) {
         
@@ -81,6 +169,8 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         do {
             // Set the audio session category, mode, and options.
             try audioSession.setCategory(.playback, mode: .moviePlayback, options: [])
+            //            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: [.defaultToSpeaker, .allowAirPlay, .allowBluetoothA2DP])
+            
         } catch {
             print("Failed to set audio session category.")
         }
@@ -95,14 +185,14 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         audioPlayer.delegate = self
         
         if audioPlayer.duration > 0.0 {
-            audioPlayer.play(atTime: audioPlayer.deviceCurrentTime + 12)
+            audioPlayer.play()
             status = .playing
             self.songDuration = audioPlayer.duration
             self.musicRunningTime = 0
             self.progressBarValue = 0
             start()
         }
-       
+        
     }
     
     func pauseMusic() {
@@ -112,7 +202,7 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         audioPlayer.pause()
         status = .pause
         pause()
-      
+        
     }
     
     func resumeMusic() {
@@ -120,20 +210,16 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         audioPlayer.play(atTime:audioPlayer.deviceCurrentTime)
         status = .playing
         start()
-       
+        
     }
     
-    func stopPlayback() {
-        audioPlayer?.stop()
-        status = .stopped
-        stop()
-      
-    }
+    
 }
 
 
 extension MusicPlayerViewModel: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         status = .stopped
+        nextSong()
     }
 }

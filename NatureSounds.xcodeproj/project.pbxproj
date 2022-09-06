@@ -34,6 +34,7 @@
 		D4C5EB2728C160D10066D229 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5EB2628C160D10066D229 /* HomeViewModel.swift */; };
 		D4C5EB2D28C167BB0066D229 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C5EB2C28C167BB0066D229 /* Util.swift */; };
 		D4FA5CF728C7CD0C00421495 /* MusicDownloadManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA5CF628C7CD0C00421495 /* MusicDownloadManger.swift */; };
+		D4FA5CFB28C807EE00421495 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA5CFA28C807EE00421495 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D4C5EB2628C160D10066D229 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D4C5EB2C28C167BB0066D229 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D4FA5CF628C7CD0C00421495 /* MusicDownloadManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDownloadManger.swift; sourceTree = "<group>"; };
+		D4FA5CFA28C807EE00421495 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				D4B9E41128C3DE1A0040BFE4 /* CodableBundleExtension.swift */,
 				D4B9E41328C3DEDC0040BFE4 /* Color+Extension.swift */,
 				D4366E1028C551C600FABCF7 /* TimeInterval+Extension.swift */,
+				D4FA5CFA28C807EE00421495 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FA5CFB28C807EE00421495 /* Date+Extension.swift in Sources */,
 				D4C5EB1D28C1540D0066D229 /* MainTitleView.swift in Sources */,
 				D4366E0F28C53DA000FABCF7 /* MusicProgressView.swift in Sources */,
 				D4B9E41428C3DEDC0040BFE4 /* Color+Extension.swift in Sources */,
