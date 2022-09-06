@@ -10,6 +10,7 @@ import SwiftUI
 struct HeroImageView: View {
     let imageName:String
     let title:String
+    let action : () -> Void
     var body: some View {
         VStack {
             Image(imageName)
@@ -30,7 +31,9 @@ struct HeroImageView: View {
                         
                         HStack {
                             Spacer()
-                            Button(action: {}) {
+                            Button(action: {
+                                action()
+                            }) {
                                 Text("🎧 Start")
                                     .font(.body)
                                     .fontWeight(.semibold)
@@ -52,7 +55,7 @@ struct HeroImageView: View {
 struct HeroImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HeroImageView(imageName: "rain",title: "Rain Sounds")
+            HeroImageView(imageName: "rain",title: "Rain Sounds", action:{})
             
         }
     }

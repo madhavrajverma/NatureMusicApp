@@ -13,9 +13,10 @@ class HomeViewModel: ObservableObject {
     @Published var categories : [Category] = []
     @Published var rainSongs : [Song] =  []
     
+    @Published var randomSong: Song?
+    
     
     func loadAllCategory() {
-        
         let categories: [Category] = Bundle.main.decode("songs.json")
         self.categories = categories
         
@@ -25,6 +26,10 @@ class HomeViewModel: ObservableObject {
                 self.rainSongs = rainSongs
             }
         }
+        
+        let randomIndex = Int.random(in: 0..<self.rainSongs.count)
+        let randomSong = self.rainSongs[randomIndex]
+        self.randomSong = randomSong
     }
 }
 

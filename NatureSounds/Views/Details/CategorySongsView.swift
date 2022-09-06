@@ -11,7 +11,6 @@ struct CategorySongsView: View {
     let Category: Category
     @Environment(\.presentationMode) var presentaionMode
     @State  var isMusicPlayer = false
-    @EnvironmentObject var musicVm: MusicPlayerViewModel
     @State var song:Song?
     var body: some View {
             ScrollView(.vertical,showsIndicators: false) {
@@ -93,7 +92,6 @@ struct CategorySongsView: View {
             .sheet(isPresented: $isMusicPlayer) {
                 if let song = song {
                     MusicPlayer(song: song, image: Category.Category)
-                        .environmentObject(MusicPlayerViewModel())
                 }
             }
         .edgesIgnoringSafeArea(.all)

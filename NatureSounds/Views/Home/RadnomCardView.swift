@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RadnomCardView: View {
+    let action: () -> Void
     var body: some View {
         VStack {
             ZStack(alignment:.topLeading){
@@ -29,7 +30,7 @@ struct RadnomCardView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        action()
                     }) {
                         Image(systemName: "play.circle")
                             .font(.largeTitle)
@@ -51,7 +52,9 @@ struct RadnomCardView: View {
 struct RadnomCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RadnomCardView()
+            RadnomCardView {
+                
+            }
         }
     }
 }

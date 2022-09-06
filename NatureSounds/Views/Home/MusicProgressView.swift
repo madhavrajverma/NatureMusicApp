@@ -14,7 +14,7 @@ struct MusicProgressView: View {
     var body: some View {
         HStack {
             Text(musicRunningTime.minuteString())
-            ProgressView(value: progressBarValue)
+            Slider(value: $progressBarValue)
                 .foregroundColor(.btnColor)
                 .progressViewStyle(.linear)
             

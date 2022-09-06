@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeVM:HomeViewModel
+    @EnvironmentObject var musicVm:MusicPlayerViewModel
     @State private var isMusicPlayer  = false
     var body: some View {
         NavigationView {
@@ -21,10 +22,14 @@ struct HomeView: View {
                             }
                             .padding(.vertical,20)
                             
-                            HeroImageView(imageName: "rain", title: "Rain Sound")
+                            HeroImageView(imageName: "rain", title: "Rain Sound", action: {
+                                isMusicPlayer = true
+                            })
                                 .padding(.vertical)
                             
-                            RadnomCardView()
+                            RadnomCardView(action:{
+                                isMusicPlayer = true
+                            })
                             
                             HStack {
                                 Text("Music Playlists")
@@ -42,6 +47,14 @@ struct HomeView: View {
                             homeVM.loadAllCategory()
                     }
                 
+            }.sheet(isPresented: $isMusicPlayer,onDismiss: {
+                homeVM.loadAllCategory()
+            }) {
+                if let randomSong = homeVM.randomSong {
+                    MusicPlayer(song:randomSong, image: "Rain")
+                        .environmentObject(musicVm)
+                }
+               
             }
             
             

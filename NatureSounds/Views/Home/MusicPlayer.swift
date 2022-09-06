@@ -11,8 +11,8 @@ struct MusicPlayer: View {
     @Environment(\.presentationMode) var presentaionMode
     let song:Song
     let image:String
-    @EnvironmentObject var musicVm: MusicPlayerViewModel
-    @StateObject var songDownload = MusicDownlaod()
+    @StateObject var musicVm = MusicPlayerViewModel()
+//    @StateObject var songDownload = MusicDownlaod()
     
     var body: some View {
         VStack {
@@ -62,11 +62,11 @@ struct MusicPlayer: View {
                     }
                     Spacer()
                     Button(action : {
-                      
+                        
                         if musicVm.status == .playing {
                             musicVm.pauseMusic()
                         } else if musicVm.status == .stopped {
-                            musicVm.play(musicData: songDownload.data)
+                            musicVm.play(musicData: musicVm.musicData)
                         }else if musicVm.status == .pause {
                             musicVm.resumeMusic()
                         }
@@ -79,7 +79,7 @@ struct MusicPlayer: View {
                                     .padding()
                                     .background(Color.white.cornerRadius(50))
                                 
-                                if !self.songDownload.isDownloadComplete {
+                                if !self.musicVm.isSongDownloadCompleted {
                                     LoadingView()
                                         .frame(width: 64, height: 64)
                                 }
@@ -101,13 +101,10 @@ struct MusicPlayer: View {
                     .padding()
             }
             .onAppear {
-                songDownload.fetchSongAtUrl(song.url)
-        }
+                musicVm.playMusicDataFromURL(url: song.url)
+           }
             .onDisappear {
-                musicVm.songDuration = 0
-                musicVm.musicRunningTime  = 0
-                musicVm.progressBarValue = 0
-                musicVm.stop()
+                musicVm.stopPlayback()
             }
         }
     }
