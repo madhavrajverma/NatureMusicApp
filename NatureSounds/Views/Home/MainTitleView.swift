@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MainTitleView: View {
+    let timeString:String
     var body: some View {
         VStack(alignment:.leading,spacing: 6) {
-            Text("Good Morning, Madhav")
+            Text("\(timeString), Madhav")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(Color.mainTextColor)
@@ -24,6 +25,6 @@ struct MainTitleView: View {
 
 struct MainTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTitleView()
+        MainTitleView(timeString: "Good Morning")
     }
 }

@@ -9,17 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeVM:HomeViewModel
-//    @StateObject var musicVM = MusicPlayerViewModel()
     @EnvironmentObject var musicVM: AudioPlayerViewModel
     @State private var isMusicPlayer  = false
     @State private var category = "Rain"
+    @State private var timeString = ""
     var body: some View {
         NavigationView {
             ZStack(alignment:.bottom){
                 ScrollView(.vertical,showsIndicators: false) {
                         VStack(alignment:.leading) {
                             HStack {
-                                MainTitleView()
+                                MainTitleView(timeString: timeString)
                                 Spacer()
                             }
                             .padding(.vertical,20)
@@ -53,7 +53,6 @@ struct HomeView: View {
                                     .fontWeight(.bold)
                             }
                             .padding(.vertical)
-                            
                             CategoryListView(categories:homeVM.categories)
                               
                         }
@@ -62,6 +61,7 @@ struct HomeView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .onAppear {
                             homeVM.loadAllCategory()
+                           timeString =  GetCurrentTime()
                     }
                 
             }.sheet(isPresented: $isMusicPlayer,onDismiss: {
