@@ -10,16 +10,17 @@ import SwiftUI
 struct MusicPlayer: View {
     @Environment(\.presentationMode) var presentaionMode
     let image:String
-     @ObservedObject var musicVm : MusicPlayerViewModel
+    @EnvironmentObject var musicVm: AudioPlayerViewModel
+//     @ObservedObject var musicVm : MusicPlayerViewModel
     
     var body: some View {
         VStack {
             VStack {
                 HStack {
                     Button(action : {
-                        musicVm.stopPlayback()
+//                        musicVm.stopPlayback()
                         presentaionMode.wrappedValue.dismiss()
-                        musicVm.removeSavedDate()
+//                        musicVm.removeSavedDate()
                     }) {
                         Image(systemName: "multiply.circle")
                             .font(.largeTitle)
@@ -102,12 +103,10 @@ struct MusicPlayer: View {
                     .padding()
             }
             .onAppear {
-                musicVm.playMusicDataFromURL()
+                if(musicVm.currentSong == nil) {
+                    musicVm.playMusicDataFromURL()
+                }
            }
-            .onDisappear {
-                musicVm.stopPlayback()
-                musicVm.removeSavedDate()
-            }
         }
     }
 }

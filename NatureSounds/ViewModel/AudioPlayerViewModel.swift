@@ -1,8 +1,8 @@
 //
-//  MusicPlayerViewModel.swift
+//  AudioPlayerViewModek.swift
 //  NatureSounds
 //
-//  Created by Lakshya  Verma on 04/09/22.
+//  Created by Lakshya  Verma on 09/09/22.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ enum AudioStatus {
     case stopped,playing,pause,resume
 }
 
-class MusicPlayerViewModel : NSObject,ObservableObject {
+class AudioPlayerViewModel : NSObject,ObservableObject {
     
     let musicDownloadManager = MusicDownloadManger.instance
     
@@ -33,12 +33,15 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
     
     @Published var songList:[Song] = []
     @Published var currentSong:Song?
+    @Published var category:String?
     
     var currentIndex  = 0
     
     
-//MARK: - Timer in Background
+
+    @Published var isShowPlayer = false
     
+//MARK: - Timer in Background
     override init() {
         
         super.init()
@@ -92,8 +95,7 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         musicRunningTime = 0
         progressBarValue = 0
         songDuration = 0
-        
-        
+        removeSavedDate()
     }
     
     func pause() {
@@ -135,7 +137,6 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
     
     func updateSongList(songs:[Song]) {
         self.songList = songs
-        playMusicDataFromURL()
     }
     
     
@@ -213,11 +214,16 @@ class MusicPlayerViewModel : NSObject,ObservableObject {
         
     }
     
-    
+    // new functions
+    func ShowPlayer() {
+        if self.currentSong != nil {
+            self.isShowPlayer = true
+        }
+    }
 }
 
 
-extension MusicPlayerViewModel: AVAudioPlayerDelegate {
+extension AudioPlayerViewModel: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         status = .stopped
         nextSong()

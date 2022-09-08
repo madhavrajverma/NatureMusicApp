@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var homeVM:HomeViewModel
-    @StateObject var musicVM = MusicPlayerViewModel()
+//    @StateObject var musicVM = MusicPlayerViewModel()
+    @EnvironmentObject var musicVM: AudioPlayerViewModel
     @State private var isMusicPlayer  = false
     @State private var category = "Rain"
     var body: some View {
@@ -29,7 +30,8 @@ struct HomeView: View {
                                 if let rainSong = homeVM.rainSong{
                                     updateDataForMusicplayer(song: rainSong, category: "Rain", songList: homeVM.rainSongs, currentIndex: 0)
                                 }
-                                
+                                musicVM.category = "Rain"
+                                musicVM.playMusicDataFromURL()
                                 isMusicPlayer = true
                             })
                                 .padding(.vertical)
@@ -41,6 +43,7 @@ struct HomeView: View {
                                    let category = homeVM.randomCategory{
                                     updateDataForMusicplayer(song: raindomSong,category: category.Category, songList: homeVM.randomSongsList, currentIndex: homeVM.randomIndex)
                                 }
+                                musicVM.playMusicDataFromURL()
                                 isMusicPlayer = true
                             })
                             
@@ -52,6 +55,7 @@ struct HomeView: View {
                             .padding(.vertical)
                             
                             CategoryListView(categories:homeVM.categories)
+                              
                         }
                     }.padding([.leading,.trailing])
                         .navigationTitle("Nature 🎵 Sounds")
@@ -60,17 +64,17 @@ struct HomeView: View {
                             homeVM.loadAllCategory()
                     }
                 
-            }.sheet(isPresented: $isMusicPlayer,onDismiss: {
-                homeVM.loadAllCategory()
-            }) {
+            }.sheet(isPresented: $isMusicPlayer) {
                 if homeVM.randomSong != nil {
-                    MusicPlayer(image:category, musicVm:musicVM)
+                    MusicPlayer(image:category)
+                        .environmentObject(musicVM)
                 }
                
             }
             
             
         }
+        .environmentObject(musicVM)
      
     }
     

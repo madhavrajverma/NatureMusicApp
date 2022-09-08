@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct NatureSoundsApp: App {
     @StateObject var homeVM = HomeViewModel()
-    @StateObject var musicVM  = MusicPlayerViewModel()
+    @StateObject var audioVM = AudioPlayerViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(homeVM)
-                .environmentObject(musicVM)
+                .environmentObject(audioVM)
         }
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 struct CategorySongsView: View {
     let Category: Category
     @Environment(\.presentationMode) var presentaionMode
-    @StateObject var musicVm = MusicPlayerViewModel()
+    @EnvironmentObject var musicVm :AudioPlayerViewModel
+//    @StateObject var musicVm = MusicPlayerViewModel()
     @State  var isMusicPlayer = false
     @State var song:Song?
     var body: some View {
@@ -85,7 +86,9 @@ struct CategorySongsView: View {
                                 musicVm.currentIndex = Category.songs.firstIndex(where: { s in
                                     song.name == s.name
                                 }) ?? 0
+                                musicVm.category = Category.Category
                                 isMusicPlayer = true
+                                musicVm.playMusicDataFromURL()
                             }
                         Divider()
                     }
@@ -98,7 +101,8 @@ struct CategorySongsView: View {
                 musicVm.updateSongList(songs: Category.songs)
             })
             .sheet(isPresented: $isMusicPlayer) {
-                    MusicPlayer(image: Category.Category,musicVm: musicVm)
+                    MusicPlayer(image: Category.Category)
+                    .environmentObject(musicVm)
             }
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
