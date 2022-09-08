@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MusicStatusBarView: View {
     @EnvironmentObject var audioPlayerViewModel: AudioPlayerViewModel
+    @Environment(\.colorScheme) var colorSchema
     var body: some View {
         let song = audioPlayerViewModel.currentSong
         Button(action :{
@@ -20,11 +21,12 @@ struct MusicStatusBarView: View {
                     .frame(width: 48, height: 48)
                     .cornerRadius(10)
                 Text(song?.name ?? "")
-                    .font(.headline)
-                    .foregroundColor(.black)
+                    .font(.subheadline)
+                    .foregroundColor(colorSchema == .dark ? .white : .black)
                 Spacer()
                 
                 HStack(spacing:30){
+                    
                     Button(action : {
                         if audioPlayerViewModel.status == .playing {
                             audioPlayerViewModel.pauseMusic()
@@ -32,9 +34,19 @@ struct MusicStatusBarView: View {
                             audioPlayerViewModel.resumeMusic()
                         }
                     }){
-                        Image(systemName: audioPlayerViewModel.status == .playing ?  "pause.fill":"play.fill")
-                            .font(.title)
-                            .foregroundColor(.btnColor)
+                        ZStack {
+                            Image(systemName: audioPlayerViewModel.status == .playing ?  "pause.fill":"play.fill")
+                                .font(.title)
+                                .foregroundColor(.btnColor)
+                            
+                            if !self.audioPlayerViewModel.isSongDownloadCompleted && audioPlayerViewModel.currentSong != nil {
+                                LoadingView()
+                                    .frame(width: 50, height: 50)
+                            }
+                            
+                        }
+                        
+                       
                     }
                     
                     Button(action : {
@@ -47,8 +59,9 @@ struct MusicStatusBarView: View {
                 }
             }
             .padding()
-            .background(Color.white.opacity(0.9))
+            .background(Color("Background"))
         }
+        .buttonStyle(CustomButton())
         .sheet(isPresented: $audioPlayerViewModel.isShowPlayer) {
             MusicPlayer(image: audioPlayerViewModel.category ?? "")
                 .environmentObject(audioPlayerViewModel)
@@ -59,5 +72,12 @@ struct MusicStatusBarView: View {
 struct MusicStatusBarView_Previews: PreviewProvider {
     static var previews: some View {
         MusicStatusBarView()
+    }
+}
+
+struct CustomButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
     }
 }

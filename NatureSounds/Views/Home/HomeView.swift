@@ -64,7 +64,9 @@ struct HomeView: View {
                             homeVM.loadAllCategory()
                     }
                 
-            }.sheet(isPresented: $isMusicPlayer) {
+            }.sheet(isPresented: $isMusicPlayer,onDismiss: {
+                self.homeVM.loadAllCategory()
+            }) {
                 if homeVM.randomSong != nil {
                     MusicPlayer(image:category)
                         .environmentObject(musicVM)
@@ -79,6 +81,7 @@ struct HomeView: View {
     }
     
     func updateDataForMusicplayer(song:Song,category:String,songList:[Song],currentIndex:Int) {
+        musicVM.category = category
         musicVM.songList = songList
         musicVM.currentSong = song
         musicVM.currentIndex = currentIndex

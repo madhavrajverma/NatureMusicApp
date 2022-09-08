@@ -21,13 +21,15 @@ enum NetworkError: Error {
 
 class MusicDownloadManger {
     
-    static let instance = MusicDownloadManger()
     
+    static let instance = MusicDownloadManger()
+    var dataTask:URLSessionDataTask?
     private init() { }
     
     let cacheManager  = CacheManager.instance
     
     func fetchSongAtUrl(_ item: String, completion : @escaping (Result<Data,NetworkError>) -> Void ) {
+     dataTask?.cancel()
       guard let url = URL(string: item) else { return }
         
         let data = cacheManager.getMusic(songUrl: url)
@@ -37,7 +39,7 @@ class MusicDownloadManger {
                 completion(.success(data))
             }
         }else {
-            URLSession.shared.dataTask(with: url) { data, response, error in
+         dataTask  =   URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
                     DispatchQueue.main.async {
                         completion(.success(data))
@@ -46,8 +48,8 @@ class MusicDownloadManger {
                         completion(.failure(.failure))
                     }
                 }
-            }.resume()
-            
+            }
+        dataTask?.resume()
         }
     }
 }

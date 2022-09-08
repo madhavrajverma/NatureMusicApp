@@ -10,6 +10,11 @@
           "red" : "0x18"
         }
       },
+      "display-gamut" : "sRGB",
+      "idiom" : "universal"
+    },
+    {
+      "display-gamut" : "display-P3",
       "idiom" : "universal"
     }
   ],
