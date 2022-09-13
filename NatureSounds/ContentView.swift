@@ -17,6 +17,15 @@ struct ContentView: View {
                         Text("Home")
                     }
                 }
+            if #available(iOS 15.0, *) {
+                SearchScreen()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                        Text("Search")
+                    }
+            } else {
+                // Fallback on earlier versions
+            }
             FavoritesScreen()
                 .tabItem {
                     VStack {

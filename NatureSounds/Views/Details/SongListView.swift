@@ -30,7 +30,7 @@ struct SongListView: View {
 
 struct SongListView_Previews: PreviewProvider {
     static var previews: some View {
-        SongListView(song: Song(id: 1, name: "Beach Music", url: ""))
+        SongListView(song: Song(id: 1, name: "Beach Music", url: "", category: "Rain"))
           
     }
 }

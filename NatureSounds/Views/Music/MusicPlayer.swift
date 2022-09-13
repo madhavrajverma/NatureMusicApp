@@ -116,7 +116,7 @@ struct MusicPlayer: View {
                     musicVm.setupRemoteTransportControls()
                     musicVm.setupNowPlaying()
                 }
-                guard let song = musicVm.currentSong, let category = musicVm.category else {
+                guard let song = musicVm.currentSong else {
                     return
                 }
             

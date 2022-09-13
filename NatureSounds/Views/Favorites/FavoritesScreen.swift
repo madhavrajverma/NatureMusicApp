@@ -20,35 +20,48 @@ struct FavoritesScreen: View {
                 TitleView(title: "Playlists")
                 
                     .padding(.bottom)
-                ScrollView(.horizontal,showsIndicators: false) {
-                    HStack(spacing :20) {
-                        ForEach(favoriteVm.favoritesPlaylists,id:\.category.id) { category in
-                            NavigationLink(destination: CategorySongsView(Category: category.category)) {
-                                PlaylistView(category: category)
-                            }
+                if favoriteVm.favoritesPlaylists.isEmpty {
+                    Image("noplaylist")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.size.width - 40)
+                }else {
+                    ScrollView(.horizontal,showsIndicators: false) {
+                        HStack(spacing :20) {
+                                ForEach(favoriteVm.favoritesPlaylists,id:\.category.id) { category in
+                                    NavigationLink(destination: CategorySongsView(Category: category.category)) {
+                                        PlaylistView(category: category)
+                                    }
 
+                                }
                         }
                     }
                 }
-                
                 TitleView(title: "Music")
                     .padding(.vertical)
                 
-                ScrollView(.vertical,showsIndicators: false) {
-                    
-                    VStack(spacing :20) {
-                        ForEach(favoriteVm.favoritesSongs,id:\.song.id) { favoriteSong in
-                            FavoriteSongListView(song:favoriteSong)
-                                .onTapGesture {
-                                    self.category = favoriteSong.category
-                                    musicVm.currentSong = favoriteSong.song
-                                    isMusicPlayer = true
-                                    musicVm.playMusicDataFromURL()
-                                }
-                             Divider()
+                if favoriteVm.favoritesSongs.isEmpty {
+                    Image("noSongs")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.size.width - 40)
+                }else {
+                    ScrollView(.vertical,showsIndicators: false) {
+                        
+                        VStack(spacing :20) {
+                            ForEach(favoriteVm.favoritesSongs,id:\.song.id) { favoriteSong in
+                                FavoriteSongListView(song:favoriteSong)
+                                    .onTapGesture {
+                                        self.category = favoriteSong.category
+                                        musicVm.currentSong = favoriteSong.song
+                                        isMusicPlayer = true
+                                        musicVm.playMusicDataFromURL()
+                                    }
+                                 Divider()
+                            }
                         }
-                    }
-                } .padding(.bottom,100)
+                    } .padding(.bottom,100)
+                }
                 
             }
             .onAppear(perform: {
@@ -71,4 +84,3 @@ struct Favorites_Previews: PreviewProvider {
         FavoritesScreen()
     }
 }
-

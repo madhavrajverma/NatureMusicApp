@@ -19,6 +19,8 @@ class HomeViewModel: ObservableObject {
     @Published var randomSong: Song?
     @Published var randomIndex: Int = 0
     
+    @Published var allSongs:[Song] = []
+    @Published var filteredSong:[Song] = []
     
     func loadAllCategory() {
         let categories: [Category] = Bundle.main.decode("songs.json")
@@ -28,6 +30,17 @@ class HomeViewModel: ObservableObject {
             loadRainSongs(categories: categories)
             loadRandomSonglist(categoreis: categories)
         }
+        let index = categories.endIndex
+        print(index)
+        
+        if(allSongs.isEmpty) {
+            for category in categories {
+                for song in category.songs {
+                    self.allSongs.append(song)
+                }
+            }
+        }
+        
     }
     
     func loadRainSongs(categories:[Category]) {

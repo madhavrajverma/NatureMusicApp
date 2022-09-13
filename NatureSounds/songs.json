@@ -6,22 +6,26 @@
             {
                 "id" : 11,
                 "name":"Mindfulness Relaxation",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063103/Songs/Meditation/meditations-track-118451_skrgp7.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063103/Songs/Meditation/meditations-track-118451_skrgp7.mp3",
+                "category" : "Meditation"
             },
             {
                 "id" : 12,
                 "name":"Meditation Track",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063100/Songs/Meditation/mindfulness-relaxation-amp-meditation-music-22174_um2e7g.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063100/Songs/Meditation/mindfulness-relaxation-amp-meditation-music-22174_um2e7g.mp3",
+                "category" : "Meditation",
             },
             {
                 "id" : 13,
                 "name":"Zen Spritual yoga",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063098/Songs/Meditation/zen-spiritual-yoga-massage-meditation-spa-relax-ambient-music-18403_ldheg1.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063098/Songs/Meditation/zen-spiritual-yoga-massage-meditation-spa-relax-ambient-music-18403_ldheg1.mp3",
+                "category" : "Meditation",
             },
             {
                 "id" : 14,
                 "name":"Hare krishna",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063093/Songs/Meditation/hare-krishna-relaxing-theme-4-114482_myfc3p.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063093/Songs/Meditation/hare-krishna-relaxing-theme-4-114482_myfc3p.mp3",
+                "category" : "Meditation",
             }
         ]
     },
@@ -32,27 +36,32 @@
             {
                 "id" : 21,
                 "name":"Heavy Rain Sound",
-                 "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061764/Songs/Rains/heavy-rain-nature-sounds_zk3gqe.mp3"
+                 "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061764/Songs/Rains/heavy-rain-nature-sounds_zk3gqe.mp3",
+                 "category" : "Rain"
             },
             {
                 "id" : 22,
                 "name":"Rain with Thunder",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061887/Songs/Rains/rain-and-thunder_fkkfgg.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061887/Songs/Rains/rain-and-thunder_fkkfgg.mp3",
+                "category" : "Rain"
             },
             {
                 "id" : 23,
                 "name":"Rain on Car",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061948/Songs/Rains/rain-on-a-car-roof-nature-sounds_rdv9dv.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061948/Songs/Rains/rain-on-a-car-roof-nature-sounds_rdv9dv.mp3",
+                "category" : "Rain"
             },
             {
                 "id" : 24,
                 "name":"Rain on Roof",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061964/Songs/Rains/rain-on-roof-or-window-nature-sounds_p2usge.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662061964/Songs/Rains/rain-on-roof-or-window-nature-sounds_p2usge.mp3",
+                "category" : "Rain"
             },
             {
                 "id" : 25,
                 "name" : "Light Rain",
-                 "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062073/Songs/Rains/light-rain_uu7kae.mp3"
+                 "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062073/Songs/Rains/light-rain_uu7kae.mp3",
+                 "category" : "Rain"
             }
         ]
     },
@@ -63,25 +72,29 @@
             {
                 "id" : 31,
                 "name" : "Sunset By the Sea",
-                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063364/Songs/Sea/sunset-by-the-sea-ambient-piano-music-and-calm-wave-sounds-8169_oispot.mp3"
+                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063364/Songs/Sea/sunset-by-the-sea-ambient-piano-music-and-calm-wave-sounds-8169_oispot.mp3",
+                 "category" : "Sea"
 
             },
             {
                 "id" : 32,
                 "name" : "Sea Waves",
-                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063357/Songs/Sea/sea-waves-7131_c6fvz2.mp3"
+                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063357/Songs/Sea/sea-waves-7131_c6fvz2.mp3",
+                 "category" : "Sea"
 
             },
             {
                 "id" : 33,
                 "name" : "Waves and tears",
-                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063361/Songs/Sea/waves-and-tears-sad-piano-music-with-calm-ocean-waves-8164_wn0mp2.mp3"
+                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063361/Songs/Sea/waves-and-tears-sad-piano-music-with-calm-ocean-waves-8164_wn0mp2.mp3",
+                 "category" : "Sea"
 
             },
             {
                 "id" : 34,
                 "name" : "Gentel Oceane Waves",
-                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063354/Songs/Sea/gentle-ocean-waves-breaking-on-beach-d-9333_lhw5j2.mp3"
+                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063354/Songs/Sea/gentle-ocean-waves-breaking-on-beach-d-9333_lhw5j2.mp3",
+                 "category" : "Sea"
 
             }
         ]
@@ -93,18 +106,21 @@
             {
                 "id" : 41,
                 "name" : "Train Sound",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064279/Songs/Train/train-sound_wzkfvh.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064279/Songs/Train/train-sound_wzkfvh.mp3",
+                "category" : "Trains"
 
             },
             {
                 "id" : 42,
                 "name" : "Train Pass By",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064273/Songs/Train/MZ5T4QG-train-pass-by_blmhz7.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064273/Songs/Train/MZ5T4QG-train-pass-by_blmhz7.mp3",
+                "category" : "Trains"
             },
             {
                 "id" : 43,
                 "name" : "Train Rail Road",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064269/Songs/Train/train-railroad-traffic-sound-8002_qfmbsl.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662064269/Songs/Train/train-railroad-traffic-sound-8002_qfmbsl.mp3",
+                "category" : "Trains"
             }
 
         ]
@@ -116,22 +132,26 @@
             {
                 "id" : 51,
                  "name" : "Walking through Forest",
-                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063864/Songs/Forest/mixkit-walking-through-dry-forest-leaves-1222_htko8o.wav"
+                 "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063864/Songs/Forest/mixkit-walking-through-dry-forest-leaves-1222_htko8o.wav",
+                 "category" : "Forest"
             },
             {
                 "id" : 52,
                 "name" : "The Forest",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063862/Songs/Forest/CD8XL53-the-forest_ezpjhw.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063862/Songs/Forest/CD8XL53-the-forest_ezpjhw.mp3",
+                "category" : "Forest"
            },
            {
                "id" : 53,
             "name" : "Big Waterfall",
-            "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063858/Songs/Forest/big_waterfallwav-14486_j8strk.mp3"
+            "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063858/Songs/Forest/big_waterfallwav-14486_j8strk.mp3",
+            "category" : "Forest"
           }, 
            {
                "id" : 54,
               "name" : "Forest and Waterfall",
-              "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063856/Songs/Forest/mixkit-forest-and-waterfall-1229_aloegn.wav"
+              "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662063856/Songs/Forest/mixkit-forest-and-waterfall-1229_aloegn.wav",
+              "category" : "Forest"
           }
         ]
     },
@@ -142,22 +162,26 @@
             {
                 "id" : 61,
                 "name":"twinkle",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062713/Songs/Sleep/twinkle_wkcbgm.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062713/Songs/Sleep/twinkle_wkcbgm.mp3",
+                "category" : "Sleep"
             },
             {
                 "id" : 62,
                 "name":"rockabyebaby",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062711/Songs/Sleep/rockabyebaby_rznmeh.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062711/Songs/Sleep/rockabyebaby_rznmeh.mp3",
+                "category" : "Sleep"
             },
             {
                 "id" : 63,
                 "name":"lullabyGoodnight",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062711/Songs/Sleep/lullabygoodnight_yezknq.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062711/Songs/Sleep/lullabygoodnight_yezknq.mp3",
+                "category" : "Sleep"
             },
             {
                 "id" : 64,
                 "name":"prettylittleHorses",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062710/Songs/Sleep/prettylittlehorses_ss5kvf.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062710/Songs/Sleep/prettylittlehorses_ss5kvf.mp3",
+                "category" : "Sleep"
             }
         ]
     },
@@ -168,22 +192,26 @@
             {
                 "id" : 71,
                 "name" : "insects and frogs",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062554/Songs/Animal/insects-and-frogs-at-night-17237_b1oljz.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062554/Songs/Animal/insects-and-frogs-at-night-17237_b1oljz.mp3",
+                "category" : "Insects"
             },
             {
                 "id" : 72,
                 "name" : "Cricket Chirping",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062553/Songs/Animal/cricket-chirping-6231_glacut.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062553/Songs/Animal/cricket-chirping-6231_glacut.mp3",
+                "category" : "Insects"
             },
             {
                 "id" : 73,
                 "name" : "Scary Creaking",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062550/Songs/Animal/scary-creaking-knocking-wood-6103_qaxcm3.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062550/Songs/Animal/scary-creaking-knocking-wood-6103_qaxcm3.mp3",
+                "category" : "Insects"
             },
             {
                 "id" : 74,
                 "name" : "Cricket and insects",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062553/Songs/Animal/crickets-and-insects-112715_a588k8.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062553/Songs/Animal/crickets-and-insects-112715_a588k8.mp3",
+                "category" : "Insects"
             }
         ]
     },
@@ -194,22 +222,26 @@
             {
                 "id" : 81,
                 "name":"piano sound",
-                "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062255/Songs/Relaxation/piano_j71ocl.mp3"
+                "url" :"https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062255/Songs/Relaxation/piano_j71ocl.mp3",
+                "category" : "Relaxation"
             },
             {
                 "id" : 82,
                 "name" : "Missin You",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062430/Songs/Relaxation/Missing-You_aznuwu.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062430/Songs/Relaxation/Missing-You_aznuwu.mp3",
+                "category" : "Relaxation"
             },
             {
                 "id" : 83,
                 "name" : "Peaceful Garden",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062406/Songs/Relaxation/peaceful-garden-healing-light-piano-for-meditation-zen-landscapes-112199_u7pl4e.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062406/Songs/Relaxation/peaceful-garden-healing-light-piano-for-meditation-zen-landscapes-112199_u7pl4e.mp3",
+                "category" : "Relaxation"
             },
             {
                 "id" : 84,
                 "name" : "Just Relax",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062402/Songs/Relaxation/just-relax-11157_j5ktdb.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062402/Songs/Relaxation/just-relax-11157_j5ktdb.mp3",
+                "category" : "Relaxation"
             }
         ]
     },
@@ -220,12 +252,14 @@
             {
                 "id" : 91,
                 "name" : "Still awake",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062894/Songs/Study/Still-Awake-Lofi-Study-Music_d6g9nb.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062894/Songs/Study/Still-Awake-Lofi-Study-Music_d6g9nb.mp3",
+                "category" : "Study"
             },
             {
                 "id" : 92,
                 "name" : "Morning Routine study",
-                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062899/Songs/Study/Morning-Routine-Lofi-Study-Music_wuglla.mp3"
+                "url" : "https://res.cloudinary.com/dlwzpi9jf/video/upload/v1662062899/Songs/Study/Morning-Routine-Lofi-Study-Music_wuglla.mp3",
+                "category" : "Study"
             }
 
         ]
