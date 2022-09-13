@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 struct FavoriteSongListView:View {
+  var song:FavoritesSongs
     var body: some View {
         HStack(alignment:.center,spacing:14) {
-            Image("rain")
+            Image(getImageName(Category: song.category))
                 .resizable()
                 .scaledToFill()
                 .frame(width:40,height: 40)
@@ -19,7 +20,7 @@ struct FavoriteSongListView:View {
                 .cornerRadius(4)
             
             VStack {
-                Text("Piano Music")
+                Text(song.song.name)
                     .font(.title2)
                     .fontWeight(.regular)
                 

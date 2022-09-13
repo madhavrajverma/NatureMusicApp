@@ -14,7 +14,7 @@ struct Category : Codable{
     let songs :[Song]
 }
 
-struct Song:Codable{
+struct Song: Codable{
     let id:Int
     let name:String
     let url:String

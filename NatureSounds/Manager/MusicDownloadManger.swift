@@ -21,7 +21,6 @@ enum NetworkError: Error {
 
 class MusicDownloadManger {
     
-    
     static let instance = MusicDownloadManger()
     var dataTask:URLSessionDataTask?
     private init() { }

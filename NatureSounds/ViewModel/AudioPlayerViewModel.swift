@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import UIKit
+import MediaPlayer
 
 enum AudioStatus {
     case stopped,playing,pause,resume
@@ -37,8 +38,6 @@ class AudioPlayerViewModel : NSObject,ObservableObject {
     
     var currentIndex  = 0
     
-    
-
     @Published var isShowPlayer = false
     
 //MARK: - Timer in Background
@@ -114,7 +113,7 @@ class AudioPlayerViewModel : NSObject,ObservableObject {
         stop()
         
     }
-    
+
 //MARK: - Next Song & Previou Song
     func nextSong() {
         if currentIndex < songList.count - 1 {
@@ -220,6 +219,58 @@ class AudioPlayerViewModel : NSObject,ObservableObject {
             self.isShowPlayer = true
         }
     }
+    
+    func setupRemoteTransportControls() {
+        
+        guard let audioPlayer = audioPlayer else {
+            return
+        }
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+
+        // Add handler for Play Command
+        commandCenter.playCommand.addTarget { [unowned self] event in
+          
+            print("Play command - is playing: \(audioPlayer.isPlaying)")
+            if !audioPlayer.isPlaying {
+                self.resumeMusic()
+                return .success
+            }
+            return .commandFailed
+        }
+
+        // Add handler for Pause Command
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            
+            print("Pause command - is playing: \(audioPlayer.isPlaying)")
+            if audioPlayer.isPlaying {
+                self.pause()
+                return .success
+            }
+            return .commandFailed
+        }
+    }
+    
+    
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = currentSong?.name
+
+        if let image = UIImage(named: "rain") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                MPMediaItemArtwork(boundsSize: image.size) { size in
+                    return image
+            }
+        }
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = musicRunningTime
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = songDuration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = audioPlayer?.rate
+
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
 }
 
 

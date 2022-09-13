@@ -17,7 +17,7 @@ struct ContentView: View {
                         Text("Home")
                     }
                 }
-            Favorites()
+            FavoritesScreen()
                 .tabItem {
                     VStack {
                         Image(systemName: "heart")

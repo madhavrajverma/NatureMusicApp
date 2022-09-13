@@ -11,9 +11,11 @@ struct CategorySongsView: View {
     let Category: Category
     @Environment(\.presentationMode) var presentaionMode
     @EnvironmentObject var musicVm :AudioPlayerViewModel
+    @EnvironmentObject var favoriteVm: FavoritesViewModel
 //    @StateObject var musicVm = MusicPlayerViewModel()
-    @State  var isMusicPlayer = false
-    @State var song:Song?
+    @State private var isMusicPlayer = false
+    @State private var isFavorite:Bool = false
+    @State private var song:Song?
     var body: some View {
             ScrollView(.vertical,showsIndicators: false) {
                 VStack {
@@ -51,9 +53,16 @@ struct CategorySongsView: View {
                                 }
                                 
                                 Spacer()
-                                Image(systemName: "heart.fill")
-                                    .font(.largeTitle)
-                                    .foregroundColor(.red)
+                                Button {
+                                    favoriteVm.checkPlaylistAlreadyInFavorites(category: Category)
+                                    self.isFavorite =   favoriteVm.isCategoryInfavorite(category: Category)
+                                } label: {
+                                    Image(systemName : isFavorite ?  "heart.fill" :"heart")
+                                        .font(.largeTitle)
+                                        .foregroundColor( .red)
+                                }
+
+                                    
                             }
                             .padding()
                             .padding(.top,20)
@@ -98,7 +107,8 @@ struct CategorySongsView: View {
                 
             }
             .onAppear(perform: {
-                musicVm.updateSongList(songs: Category.songs)
+                 self.isFavorite =  favoriteVm.isCategoryInfavorite(category: Category)
+                 musicVm.updateSongList(songs: Category.songs)
             })
             .sheet(isPresented: $isMusicPlayer) {
                     MusicPlayer(image: Category.Category)

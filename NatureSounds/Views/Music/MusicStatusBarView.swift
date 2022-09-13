@@ -21,7 +21,7 @@ struct MusicStatusBarView: View {
                     .frame(width: 48, height: 48)
                     .cornerRadius(10)
                 Text(song?.name ?? "")
-                    .font(.subheadline)
+                    .font(.headline)
                     .foregroundColor(colorSchema == .dark ? .white : .black)
                 Spacer()
                 

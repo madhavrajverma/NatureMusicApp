@@ -11,16 +11,16 @@ struct MusicPlayer: View {
     @Environment(\.presentationMode) var presentaionMode
     let image:String
     @EnvironmentObject var musicVm: AudioPlayerViewModel
-//     @ObservedObject var musicVm : MusicPlayerViewModel
+    @EnvironmentObject var favoritesVm:FavoritesViewModel
+    @State private var isFavorite:Bool = false
     
     var body: some View {
         VStack {
             VStack {
                 HStack {
                     Button(action : {
-//                        musicVm.stopPlayback()
+
                         presentaionMode.wrappedValue.dismiss()
-//                        musicVm.removeSavedDate()
                     }) {
                         Image(systemName: "multiply.circle")
                             .font(.largeTitle)
@@ -28,11 +28,17 @@ struct MusicPlayer: View {
                     }
                     Spacer()
                     Button(action : {
-                        
+                        guard let song = musicVm.currentSong, let category = musicVm.category else {
+                            return
+                        }
+                    
+                        favoritesVm.checkSongAlreadyInFavorites(song:song,category:category)
+                        self.isFavorite = favoritesVm.isSongInfavorite(song: song)
+                       
                     }) {
-                        Image(systemName: "heart.fill")
+                        Image(systemName : isFavorite ?  "heart.fill" :"heart")
                             .font(.largeTitle)
-                            .foregroundColor(.red)
+                            .foregroundColor( .red)
                         
                     }
                 }
@@ -88,6 +94,7 @@ struct MusicPlayer: View {
                             }
                     }
                     Spacer()
+                    
                     Button(action : {
                         musicVm.nextSong()
                     }) {
@@ -103,9 +110,17 @@ struct MusicPlayer: View {
                     .padding()
             }
             .onAppear {
+                
                 if(musicVm.currentSong == nil) {
                     musicVm.playMusicDataFromURL()
+                    musicVm.setupRemoteTransportControls()
+                    musicVm.setupNowPlaying()
                 }
+                guard let song = musicVm.currentSong, let category = musicVm.category else {
+                    return
+                }
+            
+                self.isFavorite = favoritesVm.isSongInfavorite(song: song)
            }
         }
     }
